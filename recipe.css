@@ -1,0 +1,160 @@
+/* Base styles */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Verdana, Tahoma, sans-serif;
+  background-color: #faf6f6;
+  color: #2d2926;
+  line-height: 1.6;
+}
+
+/* Recipe card */
+
+.recipe-container {
+  max-width: 1000px;
+  margin: 1rem;
+  background-color: white;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* Header */
+
+.recipe-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1.5rem;
+  background-color: #fcddf2;
+}
+
+.recipe-title {
+  margin: 0;
+  font-size: 2rem;
+  color: #916953;
+  line-height: 1.2;
+}
+
+.recipe-image {
+  width: 100%;
+  max-width: 280px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Recipe information */
+
+.recipe-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background-color: #fcb5b5;
+}
+
+.meta-item {
+  flex: 1 1 140px;
+}
+
+/* Description */
+
+.recipe-description {
+  padding: 1.5rem;
+}
+
+.recipe-description p {
+  margin: 0;
+}
+
+/* Ingredients and instructions */
+
+.ingredients-section,
+.instructions-section {
+  padding: 1.5rem;
+}
+
+.ingredients-section h2,
+.instructions-section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #916953;
+  font-size: 1.5rem;
+}
+
+.ingredients-list,
+.instructions-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 1.5rem;
+}
+
+.ingredients-list li {
+  margin-bottom: 0.5rem;
+}
+
+.instruction-step {
+  margin-bottom: 1rem;
+}
+
+/* Footer */
+
+.recipe-footer {
+  padding: 1rem 1.5rem;
+  background-color: #916953;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.recipe-footer p {
+  margin: 0.25rem 0;
+}
+
+/* Desktop styles */
+
+@media (min-width: 768px) {
+  .recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 2rem auto;
+  }
+
+  .recipe-header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .recipe-image {
+    width: 260px;
+  }
+
+  .recipe-title {
+    font-size: 2.5rem;
+    flex: 1;
+  }
+
+  .recipe-header,
+  .recipe-meta,
+  .recipe-description,
+  .recipe-footer {
+    width: 100%;
+  }
+
+  .recipe-meta {
+    justify-content: space-between;
+  }
+
+  .ingredients-section {
+    width: 35%;
+  }
+
+  .instructions-section {
+    width: 65%;
+    border-left: 1px solid #cf8e80;
+  }
+}
