@@ -84,15 +84,18 @@ body {
 
 .recipe-title {
   margin: 0;
+
   font-family: var(--font-heading);
   font-size: 2rem;
   line-height: 1.2;
+
   color: var(--color-dark);
 }
 
 .recipe-image {
   width: 100%;
   height: 200px;
+
   object-fit: cover;
   border-radius: 12px;
 }
@@ -110,7 +113,9 @@ body {
   gap: var(--space-medium);
 
   padding: var(--space-medium) var(--space-large);
+
   background-color: var(--color-accent);
+  color: var(--color-text);
 }
 
 .meta-item {
@@ -118,7 +123,7 @@ body {
 }
 
 .meta-item strong {
-  color: var(--color-dark);
+  color: var(--color-text);
 }
 
 
@@ -169,15 +174,16 @@ body {
 
 .ingredients-list li {
   display: flex;
-  gap: var(--space-small);
   align-items: flex-start;
+  gap: var(--space-small);
 }
 
-/* Makes ingredients easier to visually check off while cooking */
-.ingredients-list li::before {
-  content: "☐";
-  color: var(--color-dark);
-  font-size: 1.1rem;
+.ingredients-list input {
+  margin-top: 0.35rem;
+}
+
+.ingredients-list label {
+  cursor: pointer;
 }
 
 
