@@ -1,71 +1,41 @@
+
 // ============================================================
 // TUTORIAL 4: JAVASCRIPT FUNDAMENTALS
 // RSVP card — wire up the behavior
 // ============================================================
-//
-// BEFORE YOU START: open the browser console (F12 → Console)
-// You'll use it to check your work throughout.
-//
-// Run this any time to see the current state of your variables:
-//   checkStatus()
-//
-// ============================================================
 
+// ── 1. DATA ─────────────────────────────────────────────────
 
-// ── 1. DATA: what are we tracking? ──────────────────────────
-//
-// These two variables represent the user's choice.
-// Only one can be true at a time.
-// (Later, think about whether you need both.)
-
-let isGoing    = false;
+let isGoing = false;
 let isNotGoing = false;
 
+// ── 2. ELEMENTS ─────────────────────────────────────────────
 
-// ── 2. ELEMENTS: find everything we'll need ─────────────────
-//
-// We grab all the elements once, at the top.
-// Then we use the variables below instead of querySelector every time.
+const nameInput = document.querySelector('#name-input');
+const guestInput = document.querySelector('#guest-input');
+const guestField = document.querySelector('#guest-field');
 
-const nameInput    = document.querySelector('#name-input');
-const guestInput   = document.querySelector('#guest-input');
-const guestField   = document.querySelector('#guest-field');
-
-// Try getting the yes, no, confirmation and regret elements from the html.
-const btnYes       = document.querySelector('#btn-yes');
-const btnNo        = document.querySelector('#btn-no');
+const btnYes = document.querySelector('#btn-yes');
+const btnNo = document.querySelector('#btn-no');
 const confirmation = document.querySelector('#confirmation');
-const regret       = document.querySelector('#regret');
+const regret = document.querySelector('#regret');
+
+// Disable both buttons until a name is entered.
 btnYes.disabled = true;
+btnNo.disabled = true;
 
-
-// ── 3. HELPERS: small functions that do one thing ───────────
-//
-// getName() returns the name from the input, or 'Someone' if it's empty.
-// .trim() removes whitespace from both ends of a string.
+// ── 3. HELPERS ──────────────────────────────────────────────
 
 const getName = () => {
   const raw = nameInput.value.trim();
   return raw || 'Someone';
-  // What does || do here? If raw is an empty string (falsy), return 'Someone'.
 };
-
-// getGuests() returns the guest count as a NUMBER.
-// Try: console.log(typeof guestInput.value) — what do you see?
-// Number() converts the string "3" to the number 3.
 
 const getGuests = () => Number(guestInput.value);
 
+// ── 4. TASK 1 & 2: RSVP BUTTONS ─────────────────────────────
 
-// ── 4. TASK 1 & 2: wire up the YES button ───────────────────
-//
-// When the user clicks Going:
-//   - set isGoing = true, isNotGoing = false
-//   - add 'active' class to btnYes, remove it from btnNo
-//   - remove 'hidden' from guestField (show it)
-//   - remove 'hidden' from confirmation, add 'hidden' to regret
-//   - call updateConfirmation() (written below in Task 3)
-
+// Going button
 btnYes.addEventListener('click', () => {
 
   isGoing = true;
@@ -74,8 +44,6 @@ btnYes.addEventListener('click', () => {
   btnYes.classList.add('active');
   btnNo.classList.remove('active');
 
-  btnNo.disabled = true;
-
   guestField.classList.remove('hidden');
 
   confirmation.classList.remove('hidden');
@@ -83,26 +51,16 @@ btnYes.addEventListener('click', () => {
 
   updateConfirmation();
 
-
 });
 
-
-// When the user clicks Can't make it:
-//   - set isGoing = false, isNotGoing = true
-//   - add 'active' class to btnNo, remove it from btnYes
-//   - add 'hidden' to guestField (hide it)
-//   - add 'hidden' to confirmation, remove 'hidden' from regret
-//   - set regret.textContent using a template literal with getName()
-
+// Can't make it button
 btnNo.addEventListener('click', () => {
 
-    isGoing = false;
+  isGoing = false;
   isNotGoing = true;
 
   btnNo.classList.add('active');
   btnYes.classList.remove('active');
-
-  btnYes.disabled = true;
 
   guestField.classList.add('hidden');
 
@@ -111,28 +69,14 @@ btnNo.addEventListener('click', () => {
 
   regret.textContent = `${getName()} can't make it.`;
 
-
 });
 
-
-// ── 5. TASK 3 & 4: build the confirmation message ───────────
-//
-// updateConfirmation() assembles the message from name + guest count.
-//
-// Template literal syntax:  `${expression} rest of string`
-//
-// The guest count needs a conditional:
-//   0 guests → "flying solo."
-//   1 guest  → "bringing 1 guest."
-//   2+ guests → "bringing 3 guests."
-//
-// Hint: write the conditional first, store the result in a variable,
-// then use that variable in the template literal.
+// ── 5. TASK 3 & 4: CONFIRMATION MESSAGE ─────────────────────
 
 const updateConfirmation = () => {
   const guests = getGuests();
 
-    let guestLine;
+  let guestLine;
 
   if (guests === 0) {
     guestLine = 'flying solo.';
@@ -143,30 +87,25 @@ const updateConfirmation = () => {
   }
 
   confirmation.textContent = `${getName()} is coming — ${guestLine}`;
-
 };
 
-
-// ── 6. TASK 5: live updates ──────────────────────────────────
-//
-// Add 'input' event listeners to nameInput and guestInput.
-// Each one should check whether the user has made a choice yet,
-// and if so, call the right update function.
-//
-// Hint: use the isGoing and isNotGoing variables to check.
+// ── 6. TASK 5: LIVE UPDATES ─────────────────────────────────
 
 nameInput.addEventListener('input', () => {
 
-  btnYes.disabled = nameInput.value.trim() === '';
+  const isNameEmpty = nameInput.value.trim() === '';
 
-    if (isGoing) {
+  // Both buttons require a name.
+  btnYes.disabled = isNameEmpty;
+  btnNo.disabled = isNameEmpty;
+
+  if (isGoing) {
     updateConfirmation();
   }
 
   if (isNotGoing) {
     regret.textContent = `${getName()} can't make it.`;
   }
-
 
 });
 
@@ -178,10 +117,7 @@ guestInput.addEventListener('input', () => {
 
 });
 
-
-// ── DEBUGGING ────────────────────────────────────────────────
-//
-// Type checkStatus() in the browser console to see current variable values.
+// ── DEBUGGING ───────────────────────────────────────────────
 
 const checkStatus = () => {
   console.log('=== current state ===');
@@ -193,15 +129,16 @@ const checkStatus = () => {
   console.log('====================');
 };
 
-// Type resetCard() in the browser console to clear everything and start over.
-
 const resetCard = () => {
-  isGoing    = false;
+  isGoing = false;
   isNotGoing = false;
 
-  nameInput.value  = '';
+  nameInput.value = '';
   guestInput.value = '0';
+
+  // Reset both buttons.
   btnYes.disabled = true;
+  btnNo.disabled = true;
 
   btnYes.classList.remove('active');
   btnNo.classList.remove('active');
@@ -211,7 +148,7 @@ const resetCard = () => {
   regret.classList.add('hidden');
 
   confirmation.textContent = '';
-  regret.textContent       = '';
+  regret.textContent = '';
 
   console.log('Card reset.');
 };
