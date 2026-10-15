@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial 6: Load Real Data</title>
+    <link rel="stylesheet" href="style6.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tutorial 6: Load Real Data</h1>
+            <p>From static data to dynamic data loading from the internet</p>
+        </header>
+
+        <!-- Loading Status Section -->
+        <section class="status-section">
+            <h2>Data Loading Status</h2>
+            <div id="loading-status" class="status-display">
+                <p class="status-message">Ready to load data</p>
+            </div>
+            <button id="load-data-button" class="load-button">Load Restaurant Data</button>
+        </section>
+
+        <!-- Same functionality as Tutorial 5, but with async data -->
+        
+        <!-- Method 1: forEach with loaded data -->
+        <section class="method-section">
+            <h2>Method 1: Display All Restaurants (Async Data)</h2>
+            <p>Same as Tutorial 5, but using data loaded from the internet with <code>fetch()</code>.</p>
+            
+            <div class="demo-area">
+                <button id="display-button" class="method-button" disabled>Display All Restaurants</button>
+                <div id="restaurant-list" class="result-area">
+                    <p class="placeholder">Load data first, then click to display all restaurants</p>
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>What's different:</strong> The data comes from the internet, not hardcoded in our JavaScript file.</p>
+            </div>
+        </section>
+
+        <!-- Method 2: filter with loaded data -->
+        <section class="method-section">
+            <h2>Method 2: Filter Cheap Restaurants (Async Data)</h2>
+            <p>Same filtering logic, but working with data that was loaded asynchronously.</p>
+            
+            <div class="demo-area">
+                <button id="filter-button" class="method-button" disabled>Show Cheap Restaurants</button>
+                <div id="filtered-list" class="result-area">
+                    <p class="placeholder">Load data first, then click to show only affordable restaurants</p>
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Key insight:</strong> Once data is loaded, you use the same array methods you learned in Tutorial 5.</p>
+            </div>
+        </section>
+
+        <!-- Method 3: map with loaded data -->
+        <section class="method-section">
+            <h2>Method 3: Extract Restaurant Names (Async Data)</h2>
+            <p>Same data transformation, but the source data came from a network request.</p>
+            
+            <div class="demo-area">
+                <button id="map-button" class="method-button" disabled>Show Restaurant Names</button>
+                <div id="mapped-list" class="result-area">
+                    <p class="placeholder">Load data first, then click to show just the restaurant names</p>
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Real-world pattern:</strong> Load data → Transform data → Display data</p>
+            </div>
+        </section>
+
+        <!-- Error Handling Demo -->
+        <section class="method-section error-demo">
+            <h2>Error Handling Demo</h2>
+            <p>See what happens when data loading fails. This button tries to load from a broken URL.</p>
+            
+            <div class="demo-area">
+                <button id="error-button" class="error-button">Try Loading Bad Data</button>
+                <div id="error-display" class="result-area">
+                    <p class="placeholder">Click to see error handling in action</p>
+                </div>
+            </div>
+            
+            <div class="explanation">
+                <p><strong>Important:</strong> Always handle errors gracefully. Users should see helpful messages, not broken interfaces.</p>
+            </div>
+        </section>
+
+
+    </div>
+
+    <script src="script6.js"></script>
+</body>
+</html>
