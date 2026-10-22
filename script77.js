@@ -94,32 +94,35 @@ function createMyChart() {
                     borderWidth: 2
                 }]
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Restaurant Distribution by Cuisine Type'
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Restaurants'
-                        }
-                    }
-                }
+            
+options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+        title: {
+            display: true,
+            text: 'Restaurant Distribution by Cuisine Type'
+        }
+    },
+    scales: {
+        y: {
+            beginAtZero: true,
+            title: {
+                display: true,
+                text: 'Number of Restaurants'
             }
-        });
-        
-        console.log('Chart created successfully!');
-        
-    } catch (error) {
-        handleChartError(error);
+        }
     }
 }
+});
+
+console.log('Chart created successfully!');
+
+} catch (error) {
+    handleChartError(error);
+}
+}
+
 
 // ============================================
 // EXAMPLE 2: LEAFLET.JS - COMPLETED
